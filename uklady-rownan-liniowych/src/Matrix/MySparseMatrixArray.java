@@ -18,4 +18,16 @@ public class MySparseMatrixArray extends MySparseMatrix {
     public double getElement(int row, int col) {
         return nonZeroElements[row][col];
     }
+
+    @Override
+    public void gaussianElim() {
+        for (int row = 0; row < numRows; row++) {
+            // Find first non-zero element
+            for (int column = 0; column < numCols; column++) {
+                if (getElement(row, column) == 0)
+                    continue;
+
+            }
+        }
+    }
 }

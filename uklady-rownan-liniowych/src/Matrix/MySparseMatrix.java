@@ -58,4 +58,5 @@ public abstract class MySparseMatrix {
         }
     }
 
+    public void gaussianElim() { return; }
 }
