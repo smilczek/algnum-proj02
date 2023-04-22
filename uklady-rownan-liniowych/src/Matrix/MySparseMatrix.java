@@ -58,4 +58,12 @@ public abstract class MySparseMatrix {
         }
     }
 
+    public void swapRows(int row1, int row2) {
+        for (int col = 0; col < numCols; col++) {
+            double value1 = getElement(row1, col);
+            double value2 = getElement(row2, col);
+            setElement(row1, col, value2);
+            setElement(row2, col, value1);
+        }
+    }
 }
