@@ -21,9 +21,14 @@ public class Solve {
         }
     }
 
-
     public void reduceColumn(int columnIndex, int startRow) {
         double baseFactor = A.getElement(startRow, columnIndex);
+
+//        czesciowy wybor elementu podstawowego maybe?
+        if (baseFactor == 0.0) {
+            A.swapRows(startRow, findMaxValueRow(columnIndex, startRow));
+            B.swapRows(startRow, findMaxValueRow(columnIndex, startRow));
+        }
 
         for (int row = startRow + 1; row < A.getNumRows(); row++) {
             A.newSubtractRows(row, startRow, A.getElement(row, columnIndex)/baseFactor);
@@ -31,5 +36,24 @@ public class Solve {
         }
     }
 
+    public int findMaxValueRow(int col, int startRow) {
+        double maxFactor = A.getElement(startRow, col);
+        int maxRow = startRow;
+        for (int row = startRow; row < A.getNumRows(); row++) {
+            if (A.getElement(row, col) > maxFactor) {
+                maxFactor = A.getElement(row, col);
+                maxRow = row;
+            }
+        }
+        return maxRow;
+    }
+
+    public void solveReducedMatrix() {
+
+    }
+
+    public void solveRow(int row) {
+
+    }
 
 }
