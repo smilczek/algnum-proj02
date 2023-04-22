@@ -20,4 +20,42 @@ public abstract class MySparseMatrix {
     public int getNumCols() {
         return numCols;
     }
+
+    public int getFirstNonZeroIndex(int row) {
+        for (int col = 0; col < numCols; col++) {
+            if (getElement(row, col) != 0) {
+                return col;
+            }
+        }
+        return -1;
+    }
+
+    public void multiplyRow(int row, double scalar) {
+        for (int col = 0; col < numCols; col++) {
+            double value = getElement(row, col) * scalar;
+            setElement(row, col, value);
+        }
+    }
+
+    public void divideRow(int row, double scalar) {
+        for (int col = 0; col < numCols; col++) {
+            double value = getElement(row, col) / scalar;
+            setElement(row, col, value);
+        }
+    }
+
+    public void addRows(int destRow, int srcRow) {
+        for (int col = 0; col < numCols; col++) {
+            double destValue = getElement(destRow, col) + getElement(srcRow, col);
+            setElement(destRow, col, destValue);
+        }
+    }
+
+    public void subtractRows(int destRow, int srcRow) {
+        for (int col = 0; col < numCols; col++) {
+            double destValue = getElement(destRow, col) - getElement(srcRow, col);
+            setElement(destRow, col, destValue);
+        }
+    }
+
 }
