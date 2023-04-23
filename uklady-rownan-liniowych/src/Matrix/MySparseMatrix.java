@@ -119,6 +119,7 @@ public abstract class MySparseMatrix {
     public void generateBand() {
         for (int row = 0; row < Math.min(numRows, numCols); row++) {
             setElement(row, row, generateRandomValue());
+            setSolution(row, generateRandomValue());
         }
     }
 
@@ -131,6 +132,7 @@ public abstract class MySparseMatrix {
                     setElement(row, col, generateRandomValue());
                 }
             }
+            setSolution(row, generateRandomValue());
         }
     }
 
