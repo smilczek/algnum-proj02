@@ -167,23 +167,23 @@ public abstract class MySparseMatrix {
 
     public void solveA1() {
         this.reduce();
-        this.printMatrix();
-        this.printSolution();
+//        this.printMatrix();
+//        this.printSolution();
         this.gaussianElim();
-        this.printMatrix();
+//        this.printMatrix();
         this.calcSolution();
-        System.out.println("Solution A1:");
-        this.printSolved();
+//        System.out.println("Solution A1:");
+//        this.printSolved();
     }
 
     public void solveA2() {
-        this.printMatrix();
-        this.printSolution();
+//        this.printMatrix();
+//        this.printSolution();
         this.gaussianElim2();
-        this.printMatrix();
+//        this.printMatrix();
         this.calcSolution();
-        System.out.println("Solution A2:");
-        this.printSolved();
+//        System.out.println("Solution A2:");
+//        this.printSolved();
     }
 
 
