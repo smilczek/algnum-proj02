@@ -40,6 +40,10 @@ public abstract class MySparseMatrix {
         this.solvedVec[row] = value;
     }
 
+    public double[] getSolvedVec() {
+        return this.solvedVec;
+    }
+
     public int getFirstNonZeroIndex(int row) {
         for (int col = 0; col < numCols; col++) {
             if (getElement(row, col) != 0) {
@@ -127,7 +131,6 @@ public abstract class MySparseMatrix {
         }
     }
 
-
     protected void calcSolution() {
         for (int diag = this.getNumRows() - 1; diag >= 0; diag--) {
             double calcValue = this.getSolutionValue(diag);
@@ -166,7 +169,7 @@ public abstract class MySparseMatrix {
     }
 
     public void solveA1() {
-        this.reduce();
+//        this.reduce();
 //        this.printMatrix();
 //        this.printSolution();
         this.gaussianElim();
@@ -185,7 +188,6 @@ public abstract class MySparseMatrix {
 //        System.out.println("Solution A2:");
 //        this.printSolved();
     }
-
 
     public void printMatrix() {
         for (int row = 0; row < numRows; row++) {
