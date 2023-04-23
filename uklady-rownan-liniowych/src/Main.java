@@ -3,13 +3,8 @@ import Matrix.MySparseMatrixHashMap;
 
 public class Main {
     public static void main(String[] args) {
-        MySparseMatrixArray mat = new MySparseMatrixArray(5, 5);
+        MySparseMatrixArray mat = new MySparseMatrixArray(3, 3);
         mat.generateDense();
-        mat.reduce();
-//        mat.printMatrix();
-        mat.gaussianElim();
-        mat.printMatrix();
-        mat.calcSolution();
-        mat.printSolved();
+        mat.solve();
     }
 }
