@@ -216,6 +216,8 @@ public abstract class MySparseMatrix {
 
             // Subtract current row from the rows below it
             for (int row = currRow + 1; row < this.getNumRows(); row++) {
+                if (this.getElement(row, column) == 0)
+                    continue;
                 this.subtractRowsScalar(row, currRow, this.getElement(row, column) / firstElem);
             }
             currRow++;
@@ -244,6 +246,8 @@ public abstract class MySparseMatrix {
 
             // Subtract current row from the rows below it
             for (int row = currRow + 1; row < this.getNumRows(); row++) {
+                if (this.getElement(row, column) == 0)
+                    continue;
                 this.subtractRowsScalar(row, currRow, this.getElement(row, column) / firstElem);
             }
             currRow++;
