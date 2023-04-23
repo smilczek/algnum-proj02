@@ -12,11 +12,15 @@ public class Main {
 //        mat1.printMatrix();
 //        mat2.printMatrix();
 
-        mat1.solveA1();
-        mat2.solveA2();
+//        mat1.solveA1();
+//        mat2.solveA2();
 
-        mat1.printSolved();
-        mat2.printSolved();
+//        mat1.printSolved();
+//        mat2.printSolved();
+
+        EfficiencyTests test = new EfficiencyTests();
+        test.testArrayA1(50);
+
 //        EXAMPLE OF FILE SAVING/LOADING
 //        double[][] testarr = new double[][]{{1, 2, 0}, {3, 0, 1}, {0, 0, 5}};
 //        MySparseMatrixHashMap testmatrix = new MySparseMatrixHashMap(testarr);
