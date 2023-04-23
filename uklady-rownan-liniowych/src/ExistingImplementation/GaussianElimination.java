@@ -65,7 +65,6 @@ public class GaussianElimination {
             }
             x[i] = (b[i] - sum) / A[i][i];
         }
-
         System.out.println("Existing solution:");
         for (int i = 0; i < x.length; i++) {
             System.out.println(x[i]);
