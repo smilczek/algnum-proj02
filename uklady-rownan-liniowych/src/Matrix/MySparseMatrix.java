@@ -158,11 +158,20 @@ public abstract class MySparseMatrix {
         }
     }
 
-    public void solve() {
+    public void solveA1() {
         this.reduce();
         this.printMatrix();
         this.printSolution();
         this.gaussianElim();
+        this.printMatrix();
+        this.calcSolution();
+        this.printSolved();
+    }
+
+    public void solveA2() {
+        this.printMatrix();
+        this.printSolution();
+        this.gaussianElim2();
         this.printMatrix();
         this.calcSolution();
         this.printSolved();
@@ -192,6 +201,34 @@ public abstract class MySparseMatrix {
             // Go to the next column if this is not the first non-zero element
             if (firstElem == 0)
                 continue;
+
+            // Subtract current row from the rows below it
+            for (int row = currRow + 1; row < this.getNumRows(); row++) {
+                this.subtractRowsScalar(row, currRow, this.getElement(row, column) / firstElem);
+            }
+            currRow++;
+        }
+    }
+
+    public int findMaxValueRow(int col, int startRow) {
+        double maxFactor = getElement(startRow, col);
+        int maxRow = startRow;
+        for (int row = startRow; row < getNumRows(); row++) {
+            if (getElement(row, col) > maxFactor) {
+                maxFactor = getElement(row, col);
+                maxRow = row;
+            }
+        }
+        return maxRow;
+    }
+
+    protected void gaussianElim2() {
+        int currRow = 0; // The row we're subtracting from others
+        for (int column = 0; column < this.getNumCols() && currRow < this.getNumRows(); column++) {
+            double firstElem = this.getElement(currRow, column);
+            // Go to the next column if this is not the first non-zero element
+            if (firstElem == 0)
+                swapRows(currRow, findMaxValueRow(column, currRow));
 
             // Subtract current row from the rows below it
             for (int row = currRow + 1; row < this.getNumRows(); row++) {
