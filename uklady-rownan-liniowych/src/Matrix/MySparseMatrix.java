@@ -142,11 +142,14 @@ public abstract class MySparseMatrix {
         }
     }
     protected void reduce() {
+        int swapRow = 0;
         for (int column = 0; column < this.getNumCols(); column++) {
-            for (int row = column; row < this.getNumRows(); row++) {
+            for (int row = swapRow; row < this.getNumRows(); row++) {
                 if (this.getElement(row, column) == 0)
                     continue;
-                this.swapRows(row, column);
+                if (swapRow != row)
+                    this.swapRows(swapRow, row);
+                swapRow++;
             }
         }
     }
