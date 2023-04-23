@@ -1,5 +1,6 @@
 package Matrix;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class MySparseMatrixHashMap extends MySparseMatrix {
@@ -17,15 +18,27 @@ public class MySparseMatrixHashMap extends MySparseMatrix {
         // the first thing in the constructor, so it has no names for the arguments
         // it translates to super(numRows, numCols)
         super(matrix.length, matrix[0].length);
-        int numRows = matrix.length;
-        int numCols = matrix[0].length;
+        arrayToMatrix(matrix);
+    }
+
+    public MySparseMatrixHashMap(String filename) throws IOException {
+        double[][] array = loadFromFile(filename);
+        this.numRows = array.length;
+        this.numCols = array[0].length;
+
+        arrayToMatrix(array);
+    }
+
+    public void arrayToMatrix(double[][] array) {
+        int numRows = array.length;
+        int numCols = array[0].length;
 
         this.nonZeroElements = new HashMap<>();
 
         for (int row = 0; row < numRows; row++) {
             for (int col = 0; col < numCols; col++) {
-                if(matrix[row][col] != 0) {
-                    this.setElement(row, col, matrix[row][col]);
+                if(array[row][col] != 0) {
+                    this.setElement(row, col, array[row][col]);
                 }
             }
         }
