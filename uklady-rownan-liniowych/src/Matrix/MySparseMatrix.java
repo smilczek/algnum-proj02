@@ -14,23 +14,28 @@ public abstract class MySparseMatrix {
         this.solvedVec = new double[numCols];
     }
 
-    public abstract void setElement(int row, int col, double value);
-
     public abstract double getElement(int row, int col);
+    public abstract void setElement(int row, int col, double value);
 
     public int getNumRows() {
         return numRows;
     }
-
     public int getNumCols() {
         return numCols;
     }
 
     protected double getSolutionValue(int row) { return this.solution[row]; }
-
     protected void setSolution(int row, double value) {
         this.solution[row] = value;
     }
+
+    protected double getSolvedValue(int row) {
+        return this.solvedVec[row];
+    }
+    protected void setSolvedValue(int row, double value) {
+        this.solvedVec[row] = value;
+    }
+
     public int getFirstNonZeroIndex(int row) {
         for (int col = 0; col < numCols; col++) {
             if (getElement(row, col) != 0) {
@@ -110,6 +115,61 @@ public abstract class MySparseMatrix {
             setSolution(row, generateRandomValue());
         }
     }
+
+    public void generateBand() {
+        for (int row = 0; row < Math.min(numRows, numCols); row++) {
+            setElement(row, row, generateRandomValue());
+        }
+    }
+
+    public void generateSparse() {
+        generateBand();
+        Random chance = new Random();
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                if (chance.nextDouble() > 0.8) {
+                    setElement(row, col, generateRandomValue());
+                }
+            }
+        }
+    }
+
+    public void solve() {
+        this.reduce();
+        this.printMatrix();
+        this.printSolution();
+        this.gaussianElim();
+        this.printMatrix();
+        this.calcSolution();
+        this.printSolved();
+    }
+
+    protected void reduce() {
+        for (int column = 0; column < this.getNumCols(); column++) {
+            for (int row = column; row < this.getNumRows(); row++) {
+                if (this.getElement(row, column) == 0)
+                    continue;
+                this.swapRows(row, column);
+            }
+        }
+    }
+
+    public void printMatrix() {
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                System.out.print(getElement(row, col));
+                System.out.print(", ");
+            }
+            System.out.print("\n");
+        }
+    }
+
+    public void printSolution() {
+        for (double value : this.solution)
+            System.out.println(value);
+        System.out.println();
+    }
+
     protected void gaussianElim() {
         int currRow = 0; // The row we're subtracting from others
         for (int column = 0; column < this.getNumCols() && currRow < this.getNumRows(); column++) {
@@ -126,12 +186,6 @@ public abstract class MySparseMatrix {
         }
     }
 
-    protected void setSolvedValue(int row, double value) {
-        this.solvedVec[row] = value;
-    }
-    protected double getSolvedValue(int row) {
-        return this.solvedVec[row];
-    }
     protected void calcSolution() {
         for (int diag = this.getNumRows() - 1; diag >= 0; diag--) {
             double calcValue = this.getSolutionValue(diag);
@@ -141,40 +195,11 @@ public abstract class MySparseMatrix {
             this.setSolvedValue(diag, calcValue);
         }
     }
-    protected void reduce() {
-        for (int column = 0; column < this.getNumCols(); column++) {
-            for (int row = column; row < this.getNumRows(); row++) {
-                if (this.getElement(row, column) == 0)
-                    continue;
-                this.swapRows(row, column);
-            }
-        }
-    }
 
-    public void solve() {
-        this.reduce();
-        this.printMatrix();
-        this.printSolution();
-        this.gaussianElim();
-        this.printMatrix();
-        this.calcSolution();
-        this.printSolved();
-    }
-    public void printMatrix() {
-        for (int row = 0; row < numRows; row++) {
-            for (int col = 0; col < numCols; col++) {
-                System.out.print(getElement(row, col));
-                System.out.print(", ");
-            }
-            System.out.print("\n");
-        }
-    }
     public void printSolved() {
         for (double value : this.solvedVec)
             System.out.println(value);
+        System.out.println();
     }
-    public void printSolution() {
-        for (double value : this.solution)
-            System.out.println(value);
-    }
+
 }
