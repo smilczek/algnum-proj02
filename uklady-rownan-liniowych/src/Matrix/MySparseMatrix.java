@@ -169,6 +169,7 @@ public abstract class MySparseMatrix {
         this.gaussianElim();
         this.printMatrix();
         this.calcSolution();
+        System.out.println("Solution A1:");
         this.printSolved();
     }
 
@@ -178,6 +179,7 @@ public abstract class MySparseMatrix {
         this.gaussianElim2();
         this.printMatrix();
         this.calcSolution();
+        System.out.println("Solution A2:");
         this.printSolved();
     }
 
@@ -190,6 +192,7 @@ public abstract class MySparseMatrix {
             }
             System.out.print("\n");
         }
+        System.out.println();
     }
 
     public void printSolution() {
