@@ -23,8 +23,10 @@ public class MySparseMatrixHashMap extends MySparseMatrix {
 
     public MySparseMatrixHashMap(String filename) throws IOException {
         double[][] array = loadFromFile(filename);
-        this.numRows = array.length;
+        this.numRows = array.length - 1;
         this.numCols = array[0].length;
+        this.solvedVec = new double[this.numRows];
+
 
         arrayToMatrix(array);
     }
