@@ -7,6 +7,7 @@ public abstract class MySparseMatrix {
 
     protected double[] solution;
     protected double[] solvedVec;
+
     public MySparseMatrix(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
@@ -135,11 +136,14 @@ public abstract class MySparseMatrix {
     }
 
     public void solve() {
+        // make sure the top row has a non-zero value
         this.reduce();
         this.printMatrix();
         this.printSolution();
+        // create a triangle
         this.gaussianElim();
         this.printMatrix();
+        // get the solution
         this.calcSolution();
         this.printSolved();
     }
