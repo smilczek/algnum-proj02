@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) {
         MySparseMatrixArray mat = new MySparseMatrixArray(3, 3);
         mat.generateSparse();
+        mat.saveToFile("martix.txt");
         mat.solveA2();
 
 //        EXAMPLE OF FILE SAVING/LOADING

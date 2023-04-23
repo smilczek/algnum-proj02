@@ -30,7 +30,7 @@ public class MySparseMatrixHashMap extends MySparseMatrix {
     }
 
     public void arrayToMatrix(double[][] array) {
-        int numRows = array.length;
+        int numRows = array.length - 1;
         int numCols = array[0].length;
 
         this.nonZeroElements = new HashMap<>();
@@ -42,6 +42,7 @@ public class MySparseMatrixHashMap extends MySparseMatrix {
                 }
             }
         }
+        this.solution = array[array.length - 1].clone();
     }
 
     @Override

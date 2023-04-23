@@ -250,7 +250,7 @@ public abstract class MySparseMatrix {
         System.out.println();
     }
 
-    public void saveToFile(String filename) throws IOException {
+    public void saveToFile(String filename) throws java.io.IOException {
         FileWriter fw = new FileWriter(filename);
         PrintWriter pw = new PrintWriter(fw);
 
@@ -261,7 +261,9 @@ public abstract class MySparseMatrix {
             }
             pw.println();
         }
-
+        for (double value : solution)
+            pw.print(value + " ");
+        pw.println();
         pw.close();
     }
 
