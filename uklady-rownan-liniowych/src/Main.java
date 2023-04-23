@@ -9,8 +9,8 @@ public class Main {
 
         EfficiencyTests tests = new EfficiencyTests();
 
-        tests.testSparse(100, 3);
-//        tests.testBand(100, 3);
+//        tests.testSparse(100, 3);
+        tests.testBand(100, 3);
 //        tests.testDense(100, 3);
     }
 }
