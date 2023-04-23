@@ -8,20 +8,47 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class CorrectnessTests {
+
+    private int min_size = 10;
+    private int max_size = 100;
     public void TG_test() throws IOException {
-        for (int size = 10; size <= 100; size++) {
+        try {
+            FileWriter writer = new FileWriter("errors.txt", true); // true means append to file
+            writer.append("Errors TG: ");
+            writer.append(System.lineSeparator());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (int size = min_size; size <= max_size; size+=10) {
             Test(size, 'G');
         }
     }
 
     public void TW_test() throws IOException {
-        for (int size = 10; size <= 100; size++) {
+        try {
+            FileWriter writer = new FileWriter("errors.txt", true); // true means append to file
+            writer.append("Errors TW: ");
+            writer.append(System.lineSeparator());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (int size = min_size; size <= max_size; size+=10) {
             Test(size, 'W');
         }
     }
 
     public void TR_test() throws IOException {
-        for (int size = 10; size <= 100; size++) {
+        try {
+            FileWriter writer = new FileWriter("errors.txt", true); // true means append to file
+            writer.append("Errors TR: ");
+            writer.append(System.lineSeparator());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (int size = min_size; size <= max_size; size+=10) {
             Test(size, 'R');
         }
     }
@@ -95,7 +122,7 @@ public class CorrectnessTests {
                         writer.append(",");
                     }
                 }
-                writer.append("/");
+                writer.append(" / ");
             }
             writer.append(System.lineSeparator());
             writer.close();
