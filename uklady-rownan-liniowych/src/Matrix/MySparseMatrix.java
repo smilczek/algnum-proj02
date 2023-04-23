@@ -9,9 +9,7 @@ public abstract class MySparseMatrix {
     protected double[] solution;
     protected double[] solvedVec;
 
-    public MySparseMatrix() {
-
-    }
+    public MySparseMatrix() {}
 
     public MySparseMatrix(int numRows, int numCols) {
         this.numRows = numRows;
@@ -291,6 +289,7 @@ public abstract class MySparseMatrix {
 
         br.close();
 
+        // This returns the matrix and the solution, this gets separated later
         return matrix;
     }
 }
