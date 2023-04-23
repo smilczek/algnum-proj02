@@ -7,6 +7,9 @@ public class Main {
     public static void main(String[] args) throws java.io.IOException {
         CorrectnessTests tester = new CorrectnessTests();
         tester.TG_test();
+//        tester.TR_test();
+//        tester.TW_test();
+
 //        MySparseMatrixArray mat = new MySparseMatrixArray(3, 3);
 //        mat.generateSparse();
 //        mat.saveToFile("matrix.txt");
