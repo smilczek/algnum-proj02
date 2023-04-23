@@ -18,7 +18,7 @@ public class EfficiencyTests {
         fw.close();
     }
 
-    public void testArrayA1(int numRounds) throws IOException {
+    public void testSparseArray(int numRounds) throws IOException {
 
         long[] times = new long[numRounds];
         for (int round = 3; round < numRounds + 3; round++) {
@@ -32,8 +32,22 @@ public class EfficiencyTests {
 
             times[round-3] = (endTime - startTime);
         }
-        writeToFile("sparseAA1", times);
+        writeToFile("sparseAA1.txt", times);
+
+        for (int round = 3; round < numRounds + 3; round++) {
+            MySparseMatrix sparseMatrix = new MySparseMatrixArray(round, round);
+            sparseMatrix.generateSparse();
+            sparseMatrix.saveToFile("matrix.txt");
+
+            long startTime = System.nanoTime();
+            sparseMatrix.solveA2();
+            long endTime = System.nanoTime();
+
+            times[round-3] = (endTime - startTime);
+        }
+        writeToFile("sparseAA2.txt", times);
 
     }
+
 
 }

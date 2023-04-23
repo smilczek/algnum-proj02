@@ -7,8 +7,8 @@ public class Main {
 //        mat.generateSparse();
 //        mat.saveToFile("matrix.txt");
 
-        MySparseMatrixHashMap mat1 = new MySparseMatrixHashMap("matrix.txt");
-        MySparseMatrixArray mat2 = new MySparseMatrixArray("matrix.txt");
+//        MySparseMatrixHashMap mat1 = new MySparseMatrixHashMap("matrix.txt");
+//        MySparseMatrixArray mat2 = new MySparseMatrixArray("matrix.txt");
 //        mat1.printMatrix();
 //        mat2.printMatrix();
 
@@ -19,15 +19,7 @@ public class Main {
 //        mat2.printSolved();
 
         EfficiencyTests test = new EfficiencyTests();
-        test.testArrayA1(50);
+        test.testSparseArray(50);
 
-//        EXAMPLE OF FILE SAVING/LOADING
-//        double[][] testarr = new double[][]{{1, 2, 0}, {3, 0, 1}, {0, 0, 5}};
-//        MySparseMatrixHashMap testmatrix = new MySparseMatrixHashMap(testarr);
-//        testmatrix.saveToFile("file");
-//
-//        MySparseMatrixArray testmatrix2 = new MySparseMatrixArray("file");
-//
-//        testmatrix2.printMatrix();
     }
 }
