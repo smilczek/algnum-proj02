@@ -153,13 +153,16 @@ public abstract class MySparseMatrix {
         }
     }
     public void generateSparse() {
-        generateBand();
-        Random chance = new Random();
+        generateDense();
+        Random rand = new Random();
+        int numZeros = rand.nextInt(getNumCols()/2, getNumCols()-1);
         for (int row = 0; row < numRows; row++) {
-            for (int col = 0; col < numCols; col++) {
-                if (chance.nextDouble() > 0.8) {
-                    setElement(row, col, generateRandomValue());
+            for (int i = 0; i < numZeros; i++) {
+                int index = rand.nextInt(numCols);
+                while (index == row || getElement(row, index) == 0) {
+                    index = rand.nextInt(numCols);
                 }
+                setElement(row, index, 0);
             }
             setSolution(row, generateRandomValue());
         }

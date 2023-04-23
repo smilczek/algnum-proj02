@@ -1,7 +1,11 @@
-import ExistingImplementation.GaussianElimination;
 import Matrix.MySparseMatrixArray;
 import Matrix.MySparseMatrixHashMap;
+
+import Tests.EfficiencyTests;
 import Tests.CorrectnessTests;
+
+import java.io.IOException;
+
 
 public class Main {
     public static void main(String[] args) throws java.io.IOException {
@@ -36,6 +40,10 @@ public class Main {
 //
 //        testmatrix2.printMatrix();
 
+        EfficiencyTests tests = new EfficiencyTests();
 
+        tests.testSparse(100, 3);
+//        tests.testBand(100, 3);
+//        tests.testDense(100, 3);
     }
 }
