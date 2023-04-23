@@ -22,14 +22,15 @@ public class MySparseMatrixArray extends MySparseMatrix {
 
     public MySparseMatrixArray(String filename) throws IOException {
         double[][] array = loadFromFile(filename);
-        this.numRows = array.length;
+        this.numRows = array.length - 1;
         this.numCols = array[0].length;
+
 
         arrayToMatrix(array);
     }
 
     public void arrayToMatrix(double[][] array) {
-        int numRows = array.length;
+        int numRows = array.length - 1;
         int numCols = array[0].length;
 
         this.nonZeroElements = new double[numRows][numCols];
@@ -41,6 +42,7 @@ public class MySparseMatrixArray extends MySparseMatrix {
                 }
             }
         }
+        this.solution = array[array.length - 1].clone();
     }
 
     @Override
