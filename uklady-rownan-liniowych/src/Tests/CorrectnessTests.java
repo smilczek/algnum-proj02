@@ -9,8 +9,9 @@ import java.io.IOException;
 
 public class CorrectnessTests {
 
-    private int min_size = 10;
-    private int max_size = 100;
+    private int min_size = 3;
+    private int max_size = 300;
+    private int step = 3;
     public void TG_test() throws IOException {
         try {
             FileWriter writer = new FileWriter("errors.txt", true); // true means append to file
@@ -20,7 +21,7 @@ public class CorrectnessTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int size = min_size; size <= max_size; size+=10) {
+        for (int size = min_size; size <= max_size; size+=step) {
             Test(size, 'G');
         }
     }
@@ -34,7 +35,7 @@ public class CorrectnessTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int size = min_size; size <= max_size; size+=10) {
+        for (int size = min_size; size <= max_size; size+=step) {
             Test(size, 'W');
         }
     }
@@ -48,7 +49,7 @@ public class CorrectnessTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int size = min_size; size <= max_size; size+=10) {
+        for (int size = min_size; size <= max_size; size+=step) {
             Test(size, 'R');
         }
     }
