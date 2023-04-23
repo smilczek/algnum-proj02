@@ -148,7 +148,9 @@ public abstract class MySparseMatrix {
                 if (swapRow != row)
                     this.swapRows(swapRow, row);
                 swapRow++;
-
+            }
+        }
+    }
     public void generateSparse() {
         generateBand();
         Random chance = new Random();
@@ -172,15 +174,6 @@ public abstract class MySparseMatrix {
         this.printSolved();
     }
 
-    protected void reduce() {
-        for (int column = 0; column < this.getNumCols(); column++) {
-            for (int row = column; row < this.getNumRows(); row++) {
-                if (this.getElement(row, column) == 0)
-                    continue;
-                this.swapRows(row, column);
-            }
-        }
-    }
 
     public void printMatrix() {
         for (int row = 0; row < numRows; row++) {
