@@ -9,9 +9,7 @@ public class MySparseMatrixArray extends MySparseMatrix {
 
     @Override
     public void setElement(int row, int col, double value) {
-        if (value != 0) {
-            nonZeroElements[row][col] = value;
-        }
+        nonZeroElements[row][col] = value;
     }
 
     @Override
