@@ -226,7 +226,7 @@ public abstract class MySparseMatrix {
         int currRow = 0; // The row we're subtracting from others
         for (int column = 0; column < this.getNumCols() && currRow < this.getNumRows(); column++) {
             double firstElem = this.getElement(currRow, column);
-            // Go to the next column if this is not the first non-zero element
+            // Swap rows if this is not the first non-zero element
             if (firstElem == 0)
                 swapRows(currRow, findMaxValueRow(column, currRow));
 
