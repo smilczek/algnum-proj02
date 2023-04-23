@@ -24,7 +24,7 @@ public class MySparseMatrixArray extends MySparseMatrix {
         double[][] array = loadFromFile(filename);
         this.numRows = array.length - 1;
         this.numCols = array[0].length;
-
+        this.solvedVec = new double[this.numRows];
 
         arrayToMatrix(array);
     }

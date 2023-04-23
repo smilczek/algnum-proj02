@@ -265,6 +265,7 @@ public abstract class MySparseMatrix {
             pw.print(value + " ");
         pw.println();
         pw.close();
+        fw.close();
     }
 
     public double[][] loadFromFile(String filename) throws IOException {
