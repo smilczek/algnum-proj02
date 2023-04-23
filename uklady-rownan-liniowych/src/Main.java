@@ -6,8 +6,10 @@ public class Main {
         MySparseMatrixArray mat = new MySparseMatrixArray(5, 5);
         mat.generateDense();
         mat.reduce();
-        mat.printMatrix();
+//        mat.printMatrix();
         mat.gaussianElim();
         mat.printMatrix();
+        mat.calcSolution();
+        mat.printSolved();
     }
 }

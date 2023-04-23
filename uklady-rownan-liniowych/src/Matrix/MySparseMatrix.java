@@ -6,10 +6,12 @@ public abstract class MySparseMatrix {
     protected int numCols;
 
     protected double[] solution;
+    protected double[] solvedVec;
     public MySparseMatrix(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
         this.solution = new double[numCols];
+        this.solvedVec = new double[numCols];
     }
 
     public abstract void setElement(int row, int col, double value);
@@ -73,7 +75,6 @@ public abstract class MySparseMatrix {
     public void subtractRowsScalar(int destRow, int srcRow, double scalar) {
         for (int col = 0; col < numCols; col++) {
             double destValue = getElement(destRow, col) - (getElement(srcRow, col) * scalar);
-            System.out.println(destValue);
             setElement(destRow, col, destValue);
         }
         subtractSolutionScalar(destRow, srcRow, scalar);
@@ -116,14 +117,28 @@ public abstract class MySparseMatrix {
             // Go to the next column if this is not the first non-zero element
             if (firstElem == 0)
                 continue;
-            // set the first element to 1
-            this.divideRow(currRow, firstElem);
 
             // Subtract current row from the rows below it
             for (int row = currRow + 1; row < this.getNumRows(); row++) {
-                this.subtractRowsScalar(row, currRow, this.getElement(row, column));
+                this.subtractRowsScalar(row, currRow, this.getElement(row, column) / firstElem);
             }
             currRow++;
+        }
+    }
+
+    protected void setSolvedValue(int row, double value) {
+        this.solvedVec[row] = value;
+    }
+    protected double getSolvedValue(int row) {
+        return this.solvedVec[row];
+    }
+    public void calcSolution() {
+        for (int diag = this.getNumRows() - 1; diag >= 0; diag--) {
+            double calcValue = this.getSolutionValue(diag);
+            for (int column = this.getNumCols() - 1; column > diag; column--)
+                calcValue -= this.getSolvedValue(column) * this.getElement(diag, column);
+            calcValue /= this.getElement(diag, diag);
+            this.setSolvedValue(diag, calcValue);
         }
     }
     public void reduce() {
@@ -144,5 +159,9 @@ public abstract class MySparseMatrix {
             System.out.print(this.getSolutionValue(row));
             System.out.print("\n");
         }
+    }
+    public void printSolved() {
+        for (double value : this.solvedVec)
+            System.out.println(value);
     }
 }
