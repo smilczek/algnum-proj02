@@ -124,12 +124,6 @@ public abstract class MySparseMatrix {
     }
 
 
-    protected void setSolvedValue(int row, double value) {
-        this.solvedVec[row] = value;
-    }
-    protected double getSolvedValue(int row) {
-        return this.solvedVec[row];
-    }
     protected void calcSolution() {
         for (int diag = this.getNumRows() - 1; diag >= 0; diag--) {
             double calcValue = this.getSolutionValue(diag);
@@ -204,16 +198,6 @@ public abstract class MySparseMatrix {
                 this.subtractRowsScalar(row, currRow, this.getElement(row, column) / firstElem);
             }
             currRow++;
-        }
-    }
-
-    protected void calcSolution() {
-        for (int diag = this.getNumRows() - 1; diag >= 0; diag--) {
-            double calcValue = this.getSolutionValue(diag);
-            for (int column = this.getNumCols() - 1; column > diag; column--)
-                calcValue -= this.getSolvedValue(column) * this.getElement(diag, column);
-            calcValue /= this.getElement(diag, diag);
-            this.setSolvedValue(diag, calcValue);
         }
     }
 
