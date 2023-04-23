@@ -289,6 +289,7 @@ public abstract class MySparseMatrix {
 
         br.close();
 
+        // This returns the matrix and the solution, this gets separated later
         return matrix;
     }
 }
