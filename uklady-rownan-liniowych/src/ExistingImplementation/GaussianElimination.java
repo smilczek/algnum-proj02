@@ -7,15 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /******************************************************************************
- *  Compilation:  javac GaussianElimination.java
- *  Execution:    java GaussianElimination
  *
- *  Gaussian elimination with partial pivoting.
- *
- *  % java GaussianElimination
- *  -1.0
- *  2.0
- *  2.0
+ * This is a modified solution found on the internet
  *
  ******************************************************************************/
 
