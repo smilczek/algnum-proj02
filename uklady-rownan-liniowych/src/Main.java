@@ -5,6 +5,6 @@ public class Main {
     public static void main(String[] args) {
         MySparseMatrixArray mat = new MySparseMatrixArray(3, 3);
         mat.generateSparse();
-        mat.solve();
+        mat.solveA2();
     }
 }
