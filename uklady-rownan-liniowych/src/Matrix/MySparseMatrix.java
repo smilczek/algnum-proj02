@@ -1,5 +1,6 @@
 package Matrix;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
 
 public abstract class MySparseMatrix {
     protected int numRows;
@@ -7,6 +8,11 @@ public abstract class MySparseMatrix {
 
     protected double[] solution;
     protected double[] solvedVec;
+
+    public MySparseMatrix() {
+
+    }
+
     public MySparseMatrix(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
@@ -204,4 +210,44 @@ public abstract class MySparseMatrix {
         System.out.println();
     }
 
+    public void saveToFile(String filename) throws IOException {
+        FileWriter fw = new FileWriter(filename);
+        PrintWriter pw = new PrintWriter(fw);
+
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                String valStr = Double.toString(getElement(row, col));
+                pw.print(valStr + " ");
+            }
+            pw.println();
+        }
+
+        pw.close();
+    }
+
+    public double[][] loadFromFile(String filename) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader(filename));
+        List<String[]> rows = new ArrayList<>();
+
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] row = line.trim().split("\\s+");
+            rows.add(row);
+        }
+
+        numRows = rows.size();
+        numCols = rows.get(0).length;
+        double[][] matrix = new double[numRows][numCols];
+
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numCols; col++) {
+                double val = Double.parseDouble(rows.get(row)[col]);
+                matrix[row][col] = val;
+            }
+        }
+
+        br.close();
+
+        return matrix;
+    }
 }
